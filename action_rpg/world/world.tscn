@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bf1drmeut5el3" path="res://world/dirt_tileset.png" id="2_mmdvd"]
 [ext_resource type="TileSet" uid="uid://32mwlpcxrgej" path="res://world/cliff_tileset.tres" id="3_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://pal71y3n2g4k" path="res://world/bush.tscn" id="3_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://bbcabvwcdgiwt" path="res://enemies/bat_enemy.tscn" id="4_4papg"]
 [ext_resource type="PackedScene" uid="uid://ov3y3fx6va2c" path="res://world/tree.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://bxsqqr7qe423x" path="res://world/grass.tscn" id="7_sc4t8"]
-[ext_resource type="PackedScene" uid="uid://bigdrf4dwpck8" path="res://effects/grass_effect.tscn" id="8_ai45w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fn3g3"]
 texture = ExtResource("2_mmdvd")
@@ -375,7 +375,7 @@ position = Vector2(-40, 16)
 tile_map_data = PackedByteArray("AAAAAAUAAAAAAAAAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAIAAAABAAYAAAABAAEAAAABAAUAAAABAAAAAAABAAcAAAAGAAEAAAACAAUAAAABAAAAAAACAAYAAAAFAAEAAAACAAcAAAACAAEAAAADAAUAAAACAAAAAAADAAYAAAACAAIAAAACAAgAAAAHAAEAAAABAAgAAAAAAAIAAAACAAkAAAAEAAMAAAADAAkAAAACAAMAAAAGAAAAAAAAAAMAAAAHAAAAAAAHAAMAAAAHAP//AAAEAAEAAAAIAP//AAAFAAMAAAAJAP//AAAGAAAAAAAKAP//AAABAAAAAAAKAAAAAAABAAEAAAAJAAAAAAAAAAEAAAAJAAEAAAAAAAEAAAAJAAIAAAAAAAEAAAAKAAIAAAABAAEAAAAKAAMAAAABAAEAAAAKAAEAAAABAAEAAAAKAAQAAAABAAIAAAALAAQAAAACAAIAAAAJAAQAAAAAAAIAAAAJAAMAAAAAAAEAAAALAAMAAAACAAEAAAALAAIAAAACAAEAAAALAAEAAAAFAAEAAAALAAAAAAABAAEAAAALAP//AAABAAAAAAAMAAAAAAAFAAIAAAAMAAEAAAABAAIAAAAMAP//AAACAAAAAAANAAAAAAACAAAAAAANAAEAAAAFAAMAAAAOAAEAAAACAAMAAAD//wEAAAACAAIAAAD//wAAAAACAAEAAAD/////AAACAAEAAAD///7/AAAFAAEAAAAAAP7/AAABAAIAAAAAAP3/AAABAAAAAAABAP3/AAAFAAAAAAABAP7/AAACAAIAAAD///3/AAABAAAAAAD+//3/AAAAAAAAAAD+//7/AAAAAAEAAAD+////AAAAAAEAAAD+/wAAAAAGAAIAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAEAAAD9/wIAAAAAAAIAAAD+/wIAAAACAAIAAAD+/wEAAAAFAAEAAAACAP3/AAABAAMAAAADAP3/AAAGAAAAAAAEAP3/AAABAAAAAAAFAP3/AAABAAAAAAAGAP3/AAABAAAAAAAHAP3/AAABAAAAAAAIAP3/AAACAAAAAAAFAP7/AAABAAIAAAAEAP7/AAABAAIAAAADAP7/AAAAAAIAAAAGAP7/AAABAAIAAAAHAP7/AAAGAAEAAAAIAP7/AAACAAEAAAA=")
 tile_set = ExtResource("3_fn3g3")
 
-[node name="Player" parent="." unique_id=747657425 instance=ExtResource("2_h5o24")]
+[node name="Player" parent="." unique_id=747657425 groups=["player"] instance=ExtResource("2_h5o24")]
 position = Vector2(161, 83)
 
 [node name="Bush" parent="." unique_id=2128405133 instance=ExtResource("3_mmdvd")]
@@ -438,5 +438,8 @@ position = Vector2(200, -8)
 [node name="Grass9" parent="." unique_id=334734992 instance=ExtResource("7_sc4t8")]
 position = Vector2(216, -8)
 
-[node name="GrassEffect" parent="." unique_id=1302710927 instance=ExtResource("8_ai45w")]
-position = Vector2(208, 48)
+[node name="BatEnemy" parent="." unique_id=2024723434 instance=ExtResource("4_4papg")]
+position = Vector2(64, 120)
+
+[node name="BatEnemy2" parent="." unique_id=830313170 instance=ExtResource("4_4papg")]
+position = Vector2(168, 168)

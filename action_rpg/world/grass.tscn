@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c2winrh4jwj6" path="res://world/grass.gd" id="1_6gvtj"]
 [ext_resource type="Texture2D" uid="uid://fklhmu1ns15s" path="res://world/grass.png" id="1_44d1o"]
+[ext_resource type="PackedScene" uid="uid://bigdrf4dwpck8" path="res://effects/grass_effect.tscn" id="2_aervy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aervy"]
 size = Vector2(12, 12)
 
 [node name="Grass" type="Node2D" unique_id=276947750]
 script = ExtResource("1_6gvtj")
+GRASS_EFFECT = ExtResource("2_aervy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1336012267]
 texture = ExtResource("1_44d1o")
