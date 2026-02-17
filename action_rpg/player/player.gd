@@ -34,8 +34,8 @@ func move_state(delta: float) -> void:
 	velocity = input_vector * SPEED
 	move_and_slide()
 
-func roll_state(detal: float) -> void:
-	velocity = last_input_vecotr * ROLL_SPEED
+func roll_state(delta: float) -> void:
+	velocity = last_input_vecotr.normalized() * ROLL_SPEED
 	move_and_slide()
 
 func update_blend_positions(direction_vector: Vector2) -> void:

@@ -18,4 +18,5 @@ shape = SubResource("CircleShape2D_nnvrw")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=1680472394]
 show_behind_parent = true
+position = Vector2(0, 2)
 texture = ExtResource("2_1q5bg")
