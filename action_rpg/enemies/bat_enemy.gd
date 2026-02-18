@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+const HIT_EFFECT = preload("uid://cpcl80cmvbs7q")
+const DEATH_EFFECT = preload("uid://bj2yo2ytb5xef")
+
 const SPEED = 30
 const FRICTION = 500
 
@@ -12,11 +15,14 @@ const FRICTION = 500
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var center: Marker2D = $Center
+@onready var navigation_agent_2d: NavigationAgent2D = $Marker2D/NavigationAgent2D
+@onready var marker_2d: Marker2D = $Marker2D
 
 func _ready() -> void:
 	stats = stats.duplicate()
 	hurtbox.hurt.connect(take_hit.call_deferred)
-	stats.no_health.connect(queue_free)
+	stats.no_health.connect(die)
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -26,7 +32,9 @@ func _physics_process(delta: float) -> void:
 		"ChaseState": 
 			var player = get_player()
 			if player is Player:
-				velocity = global_position.direction_to(player.global_position) * SPEED
+				navigation_agent_2d.target_position = player.global_position
+				var next_point = navigation_agent_2d.get_next_path_position()
+				velocity = global_position.direction_to(next_point - marker_2d.position) * SPEED
 				sprite_2d.scale.x = sign(velocity.x)
 			else:
 				velocity = Vector2.ZERO
@@ -36,7 +44,16 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			move_and_slide()
 
+func die() -> void:
+	var death_effect = DEATH_EFFECT.instantiate()
+	get_tree().current_scene.add_child(death_effect)
+	death_effect.global_position = center.global_position
+	queue_free()
+
 func take_hit(other_hitbox: Hitbox) -> void:
+	var hit_effect = HIT_EFFECT.instantiate()
+	get_tree().current_scene.add_child(hit_effect)
+	hit_effect.global_position = center.global_position
 	stats.health -= other_hitbox.damage
 	velocity = other_hitbox.knockback_direction * other_hitbox.knockback_amount
 	playback.start("HitState")
@@ -60,5 +77,6 @@ func can_see_player() -> bool:
 		return false
 	var player: = get_player()
 	ray_cast_2d.target_position = player.global_position - global_position
+	ray_cast_2d.force_raycast_update()
 	var has_line_of_sight_to_player: = not ray_cast_2d.is_colliding()
 	return has_line_of_sight_to_player
